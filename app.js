@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const passport = require('passport');
-
+const dotenv = require('dotenv');
 const app = express();
 
 // Conexión a MongoDB
