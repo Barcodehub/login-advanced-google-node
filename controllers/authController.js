@@ -4,7 +4,7 @@ const speakeasy = require('speakeasy');
 const qrcode = require('qrcode');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-
+require('dotenv').config();
 // Configuración de Google OAuth
 if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
   passport.use(new GoogleStrategy({
@@ -45,6 +45,7 @@ passport.deserializeUser(async (id, done) => {
 });
 
 exports.signup = async (req, res) => {
+  console.log('JWT_SECRET:', process.env.JWT_SECRET);
     try {
       const newUser = await User.create({
         email: req.body.email,
@@ -71,6 +72,7 @@ exports.signup = async (req, res) => {
   };
 
 exports.login = async (req, res) => {
+
   try {
     const { email, password } = req.body;
 
